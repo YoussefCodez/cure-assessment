@@ -1,0 +1,11 @@
+class LoginStrings {
+  static const String welcomeBack = 'Welcome Back';
+  static const String loginTitle = 'Login to your account';
+  static const String emailLabel = 'Email Address';
+  static const String passwordLabel = 'Password';
+  static const String loginButton = 'Login';
+  static const String dontHaveAccount = "Don't have an account? Sign up";
+  static const String emailRequired = 'Email cannot be empty';
+  static const String passwordRequired = 'Password cannot be empty';
+  static const String loginSuccess = 'Login successful!';
+}
