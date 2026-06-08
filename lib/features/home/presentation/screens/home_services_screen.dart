@@ -1,3 +1,5 @@
+import 'package:cure/core/home_strings.dart';
+import 'package:cure/features/booking/presentation/screens/booking_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,20 +22,20 @@ class HomeServicesScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Nursing Services',
+                HomeStrings.homeServicesTitle,
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.textPrimary,
-                      fontSize: 28.sp,
-                    ),
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.textPrimary,
+                  fontSize: 28.sp,
+                ),
               ),
               SizedBox(height: 8.h),
               Text(
-                'Select a professional nursing service tailored to your needs',
+                HomeStrings.homeServicesSubtitle,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: AppColors.textSecondary,
-                      fontSize: 14.sp,
-                    ),
+                  color: AppColors.textSecondary,
+                  fontSize: 14.sp,
+                ),
               ),
               SizedBox(height: 24.h),
               Expanded(
@@ -47,21 +49,25 @@ class HomeServicesScreen extends StatelessWidget {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(Icons.error_outline,
-                                size: 48.r, color: AppColors.error),
+                            Icon(
+                              Icons.error_outline,
+                              size: 48.r,
+                              color: AppColors.error,
+                            ),
                             SizedBox(height: 16.h),
                             Text(
                               state.message,
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontSize: 14.sp,
-                                  color: AppColors.textSecondary),
+                                fontSize: 14.sp,
+                                color: AppColors.textSecondary,
+                              ),
                             ),
                             SizedBox(height: 16.h),
                             ElevatedButton(
                               onPressed: () =>
                                   context.read<ServicesCubit>().loadServices(),
-                              child: const Text('Retry'),
+                              child: Text(HomeStrings.retry),
                             ),
                           ],
                         ),
@@ -84,7 +90,17 @@ class HomeServicesScreen extends StatelessWidget {
                             iconCodePoint: service.iconCodePoint,
                             price: service.price,
                             onTap: () {
-                              //TODO: Navigate to schedule service screen with passing service id and service name
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      BookingScreen(
+                                        serviceId: service.id,
+                                        serviceName: service.title,
+                                        servicePrice: service.price,
+                                      ),
+                                ),
+                              );
                             },
                           );
                         },

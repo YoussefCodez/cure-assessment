@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/app_colors.dart';
+import '../../../../core/home_strings.dart';
 import '../../../auth/domain/entities/user_entity.dart';
 import '../../../auth/presentation/view_model/auth_cubit.dart';
 
@@ -76,7 +77,7 @@ class UserProfileCard extends StatelessWidget {
               ),
             ),
             child: Text(
-              'Logout',
+              HomeStrings.logout,
               style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
             ),
           ),

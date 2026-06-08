@@ -1,11 +1,11 @@
 import 'package:injectable/injectable.dart';
 import '../../../../config/network/base_response.dart';
 import '../entities/user_entity.dart';
-import '../repositories/auth_repository.dart';
+import '../repositories/auth_repository_contract.dart';
 
 @injectable
 class IsLoggedInUseCase {
-  final AuthRepository _repository;
+  final AuthRepositoryContract _repository;
 
   const IsLoggedInUseCase(this._repository);
 

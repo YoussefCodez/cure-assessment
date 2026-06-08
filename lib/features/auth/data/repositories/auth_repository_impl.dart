@@ -3,12 +3,12 @@ import '../../../../config/network/base_response.dart';
 import '../../../../config/storage/token_storage.dart';
 import '../../../../config/utils/auth_regx.dart';
 import '../../domain/entities/user_entity.dart';
-import '../../domain/repositories/auth_repository.dart';
+import '../../domain/repositories/auth_repository_contract.dart';
 import '../datasources/auth_local_datasource.dart';
 import '../datasources/auth_mock_datasource.dart';
 
-@LazySingleton(as: AuthRepository)
-class AuthRepositoryImpl implements AuthRepository {
+@LazySingleton(as: AuthRepositoryContract)
+class AuthRepositoryImpl implements AuthRepositoryContract {
   final AuthMockDataSource _authMockDataSource;
   final AuthLocalDataSource _authLocalDataSource;
   final TokenStorage _tokenStorage;
@@ -117,9 +117,7 @@ class AuthRepositoryImpl implements AuthRepository {
           ),
         );
       }
-      return FailedResponse(
-        'No user found',
-      );
+      return FailedResponse('No user found');
     } catch (e) {
       return FailedResponse(e.toString().replaceAll('Exception: ', ''));
     }

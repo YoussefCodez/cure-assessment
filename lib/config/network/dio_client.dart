@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'auth_mock_interceptor.dart';
+import 'mock_interceptor.dart';
 
 @lazySingleton
 class DioClient {
@@ -11,7 +11,7 @@ class DioClient {
       ..options.baseUrl = 'https://api.cure.com'
       ..options.connectTimeout = const Duration(seconds: 15)
       ..options.receiveTimeout = const Duration(seconds: 15)
-      ..interceptors.add(AuthMockInterceptor());
+      ..interceptors.add(MockInterceptor());
   }
 
   Dio get dio => _dio;

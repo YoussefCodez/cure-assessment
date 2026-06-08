@@ -1,11 +1,11 @@
 import 'package:injectable/injectable.dart';
 import '../../../../config/network/base_response.dart';
 import '../entities/user_entity.dart';
-import '../repositories/auth_repository.dart';
+import '../repositories/auth_repository_contract.dart';
 
 @injectable
 class RegisterUseCase {
-  final AuthRepository _repository;
+  final AuthRepositoryContract _repository;
 
   const RegisterUseCase(this._repository);
 
@@ -14,10 +14,6 @@ class RegisterUseCase {
     required String email,
     required String password,
   }) {
-    return _repository.register(
-      name: name,
-      email: email,
-      password: password,
-    );
+    return _repository.register(name: name, email: email, password: password);
   }
 }

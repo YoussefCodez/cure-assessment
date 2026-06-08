@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
-import 'config/di/injection_container.dart' as di;
+import 'config/di/injection_container.dart';
 import 'core/app_theme.dart';
 import 'features/auth/presentation/screens/login_screen.dart';
 import 'features/auth/presentation/view_model/auth_cubit.dart';
@@ -15,7 +15,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapters();
-  await di.initDependencies();
+  await initDependencies();
   runApp(const MyApp());
 }
 
@@ -27,10 +27,10 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => di.sl<AuthCubit>()..checkAuth(),
+          create: (context) => getIt<AuthCubit>()..checkAuth(),
         ),
         BlocProvider(
-          create: (context) => di.sl<ServicesCubit>()..loadServices(),
+          create: (context) => getIt<ServicesCubit>()..loadServices(),
         ),
       ],
       child: ScreenUtilInit(

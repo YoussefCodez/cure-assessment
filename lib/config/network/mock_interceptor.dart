@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:hive_ce/hive.dart';
 
-class AuthMockInterceptor extends Interceptor {
+class MockInterceptor extends Interceptor {
   static const String _boxName = 'mock_users_box';
 
   Future<List<Map<String, String>>> _getMockUsers() async {
@@ -44,7 +44,10 @@ class AuthMockInterceptor extends Interceptor {
   }
 
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+  void onRequest(
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
     final path = options.path;
     final method = options.method.toUpperCase();
 
@@ -111,7 +114,8 @@ class AuthMockInterceptor extends Interceptor {
       }
 
       final id = DateTime.now().millisecondsSinceEpoch.toString();
-      final token = 'mock_token_${name.toLowerCase().replaceAll(' ', '_')}_${DateTime.now().millisecondsSinceEpoch}';
+      final token =
+          'mock_token_${name.toLowerCase().replaceAll(' ', '_')}_${DateTime.now().millisecondsSinceEpoch}';
 
       final newUser = {
         'id': id,
@@ -126,12 +130,7 @@ class AuthMockInterceptor extends Interceptor {
         Response(
           requestOptions: options,
           statusCode: 200,
-          data: {
-            'id': id,
-            'name': name,
-            'email': email,
-            'token': token,
-          },
+          data: {'id': id, 'name': name, 'email': email, 'token': token},
         ),
       );
       return;
@@ -144,6 +143,46 @@ class AuthMockInterceptor extends Interceptor {
           requestOptions: options,
           statusCode: 200,
           data: {'message': 'Logout successful'},
+        ),
+      );
+      return;
+    }
+
+    if (path.endsWith('/booking') && method == 'POST') {
+      await Future.delayed(const Duration(seconds: 2));
+      final data = options.data as Map<String, dynamic>?;
+      final serviceId = data?['serviceId'] as String?;
+      final time = data?['time'] as String?;
+
+      if (serviceId == null || time == null) {
+        handler.reject(
+          DioException(
+            requestOptions: options,
+            response: Response(
+              requestOptions: options,
+              statusCode: 400,
+              data: {'message': 'Invalid booking data'},
+            ),
+            type: DioExceptionType.badResponse,
+          ),
+        );
+        return;
+      }
+
+      final bookingId = DateTime.now().millisecondsSinceEpoch.toString();
+      handler.resolve(
+        Response(
+          requestOptions: options,
+          statusCode: 200,
+          data: {
+            'bookingId': bookingId,
+            'serviceId': serviceId,
+            'dayName': data?['dayName'] as String? ?? '',
+            'time': time,
+            'notes': data?['notes'] as String? ?? '',
+            'status': 'confirmed',
+            'message': 'Booking confirmed successfully',
+          },
         ),
       );
       return;

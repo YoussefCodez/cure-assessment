@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/app_colors.dart';
+import '../../../../core/home_strings.dart';
 import 'dashboard_screen.dart';
 import 'home_services_screen.dart';
 
@@ -43,12 +44,12 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined, size: 24.r),
             activeIcon: Icon(Icons.home, size: 24.r),
-            label: 'Home',
+            label: HomeStrings.navHome,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.dashboard_outlined, size: 24.r),
             activeIcon: Icon(Icons.dashboard, size: 24.r),
-            label: 'Dashboard',
+            label: HomeStrings.navDashboard,
           ),
         ],
       ),
