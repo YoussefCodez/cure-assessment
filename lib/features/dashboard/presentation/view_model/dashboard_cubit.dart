@@ -68,8 +68,7 @@ class DashboardCubit extends Cubit<DashboardState> {
       emit(currentState.copyWith(updatingBookingId: id));
     }
 
-    final result = await _updateBookingStatusUseCase(id, newStatus);
-    
+    await _updateBookingStatusUseCase(id, newStatus);
     await loadDashboard(showLoading: false);
   }
 }

@@ -8,7 +8,7 @@ on:
 
 jobs:
   flutter_analyze:
-    name: Run flutter analyze
+    name: Flutter Code Quality Check
     runs-on: ubuntu-latest
 
     steps:
