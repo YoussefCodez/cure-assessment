@@ -47,6 +47,7 @@ Each feature contains:
 - **Routing**: Standard Flutter `Navigator` with decoupled logic
 - **Network**: `dio` (Mocked for assessment)
 - **Code Generation**: `build_runner`, `freezed`, `injectable_generator`
+- **Firebase**: `messaging` (push notifications)
 
 ## Setup & Run
 
