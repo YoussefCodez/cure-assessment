@@ -12,6 +12,7 @@
 import 'package:cure/config/di/app_module.dart' as _i759;
 import 'package:cure/config/network/dio_client.dart' as _i438;
 import 'package:cure/config/storage/token_storage.dart' as _i21;
+import 'package:cure/core/services/notification_service.dart' as _i62;
 import 'package:cure/features/auth/data/datasources/auth_local_datasource.dart'
     as _i760;
 import 'package:cure/features/auth/data/datasources/auth_mock_datasource.dart'
@@ -88,6 +89,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i695.AuthValidator>(() => const _i695.AuthValidator());
     gh.lazySingleton<_i361.Dio>(() => appModule.dio);
     gh.lazySingleton<_i558.FlutterSecureStorage>(() => appModule.secureStorage);
+    gh.lazySingleton<_i62.NotificationService>(
+      () => _i62.NotificationService(),
+    );
     gh.lazySingleton<_i760.AuthLocalDataSource>(
       () => _i760.AuthLocalDataSource(),
     );

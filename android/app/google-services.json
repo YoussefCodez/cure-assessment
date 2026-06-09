@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "957193171948",
+    "project_id": "cure-396f3",
+    "storage_bucket": "cure-396f3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:957193171948:android:a35bfa0f72dde2621d46c9",
+        "android_client_info": {
+          "package_name": "com.example.cure"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcpXTcrP75OXeDylKiQQW0QKx2hAz0cPo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
